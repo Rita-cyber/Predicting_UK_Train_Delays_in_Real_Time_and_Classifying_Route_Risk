@@ -1,7 +1,7 @@
 # Predicting_UK_Train_Delays_in_Real_Time_and_Classifying_Route_Risk
 
 
-Problem Statement
+##Problem Statement
 Predict arrival delays and classify route risk levels in real time from live UK rail network updates, leveraging the Open Rail Data STOMP feed and integrating with AWS Kinesis + Lambda + ML models.
 
 🔗 Data Sources
@@ -17,30 +17,8 @@ Static Timetable Data:
 
 Use for training baseline models and comparing predicted vs actual arrival times.
 
-🧱 Architecture Overview
-sql
-Copy
-Edit
-+------------------+     +----------------+     +----------------+     +------------------+
-| Open Rail STOMP  | --> |  EC2 Listener  | --> | Kinesis Stream | --> | AWS Lambda       |
-| Feed (live data) |     |  (push client) |     | (raw messages) |     | (parse & predict)|
-+------------------+     +----------------+     +----------------+     +------------------+
-                                                                       |
-                                                                       v
-                                                            +------------------------+
-                                                            | SageMaker Endpoint     |
-                                                            | (trained RF or DT model)|
-                                                            +------------------------+
-                                                                       |
-                                                                       v
-                                                    +------------------------------+
-                                                    | S3 + DynamoDB: Predictions + |
-                                                    | metadata logging             |
-                                                    +------------------------------+
+##Achitecture Overview
 
-+------------------+
-| MLflow / Registry|
-+------------------+
 ⚙️ AWS Components
 Component	Role
 Kinesis Data Stream	Ingests real-time STOMP messages from listener client
